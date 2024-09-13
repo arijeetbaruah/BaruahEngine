@@ -1,13 +1,16 @@
 #include "bepch.h"
+#include "Core.h"
 #include "Application.h"
-#include "iostream"
+#include "Log.h"
 
 namespace BaruahEngine {
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
 	{
+		BE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
+		Log::Initialize();
 	}
 
 	Application::~Application()
@@ -16,7 +19,8 @@ namespace BaruahEngine {
 
 	void Application::Run()
 	{
-		std::cout << "test";
+		BE_CORE_INFO("Welcome to Baruah Engine!!!");
+
 		while (true)
 		{
 		}

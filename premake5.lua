@@ -6,6 +6,7 @@ workspace "BaruahEngine"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
+IncludeDir["spdlog"] = "vendor/spdlog/include"
 
 project "BaruahEngine"
     location "BaruahEngine"
@@ -30,6 +31,7 @@ project "BaruahEngine"
     includedirs
     {
         "%{prj.name}/include",
+        "%{IncludeDir.spdlog}"
     }
 
     filter "system:windows"
@@ -71,6 +73,7 @@ project "Sandbox"
     includedirs
     {
         "BaruahEngine",
+        "%{IncludeDir.spdlog}",
         "${prj.name}"
     }
 
