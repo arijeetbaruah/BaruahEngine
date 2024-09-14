@@ -1,7 +1,10 @@
 #pragma once
 #include "Core.h"
+#include "Event.h"
 
 namespace BaruahEngine {
+	using EventCallbackFn = std::function<void(BaruahEngine::Event&)>;
+
 	struct BARUAH_API WindowData
 	{
 		std::string Title;
@@ -20,6 +23,8 @@ namespace BaruahEngine {
 
 		inline unsigned int GetWidth() const { return m_Data.Width; }
 		inline unsigned int GetHeight() const { return m_Data.Height; }
+
+		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 
 		virtual void* GetNativeWindow() = 0;
 
