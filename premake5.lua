@@ -7,6 +7,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["spdlog"] = "vendor/spdlog/include"
+IncludeDir["glm"] = "vendor/glm"
+IncludeDir["GLFW"] = "vendor/glfw/include"
+IncludeDir["Glad"] = "vendor/Glad/include"
+
+include "vendor/glfw"
+include "vendor/Glad"
 
 project "BaruahEngine"
     location "BaruahEngine"
@@ -28,9 +34,16 @@ project "BaruahEngine"
         "%{prj.name}/**.cpp"
     }
 
+    defines { "BE_ENABLE_ASSERTS" }
+
+    links { "GLFW", "Glad", "opengl32.lib" }
+
     includedirs
     {
-        "%{prj.name}/include",
+        "%{prj.name}",
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
         "%{IncludeDir.spdlog}"
     }
 
@@ -79,7 +92,7 @@ project "Sandbox"
 
     links
     {
-        "BaruahEngine", "opengl32.lib"
+        "BaruahEngine", "GLFW", "opengl32.lib"
     }
 
     filter "system:windows"

@@ -6,11 +6,13 @@
 namespace BaruahEngine {
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application(): m_Running(true)
 	{
 		BE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 		Log::Initialize();
+
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -19,10 +21,9 @@ namespace BaruahEngine {
 
 	void Application::Run()
 	{
-		BE_CORE_INFO("Welcome to Baruah Engine!!!");
-
-		while (true)
+		while (m_Running)
 		{
+			m_Window->OnUpdate();
 		}
 	}
 }
