@@ -34,6 +34,8 @@ namespace BaruahEngine {
 
 	void Application::Run()
 	{
+		glfwMakeContextCurrent((GLFWwindow*)m_Window->GetNativeWindow());
+
 		while (m_Running)
 		{
 			glClearColor(0, 0, 0, 1);

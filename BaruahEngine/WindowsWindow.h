@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "Window.h"
+#include "Entity.h"
 
 struct GLFWwindow;
 
@@ -22,6 +23,7 @@ namespace BaruahEngine {
 
 	private:
 		GLFWwindow* m_Window;
+		std::shared_ptr<Entity> m_entity;
 
 		struct WindowEventData
 		{

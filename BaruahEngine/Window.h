@@ -2,6 +2,8 @@
 #include "Core.h"
 #include "Event.h"
 
+#include "Camera/Camera.h"
+
 namespace BaruahEngine {
 	using EventCallbackFn = std::function<void(BaruahEngine::Event&)>;
 
@@ -17,7 +19,7 @@ namespace BaruahEngine {
 	class BARUAH_API Window
 	{
 	public:
-		Window(WindowData data): m_Data(data) {}
+		Window(WindowData data): m_Data(data), m_camera(0) {}
 		
 		virtual void OnUpdate() = 0;
 
@@ -30,7 +32,13 @@ namespace BaruahEngine {
 
 		static Window* Create(const WindowData& datum = WindowData());
 
+		inline std::shared_ptr<Camera> getCamera() const {
+			return m_camera;
+		}
+
 	protected:
 		WindowData m_Data;
+
+		std::shared_ptr<Camera> m_camera;
 	};
 }
