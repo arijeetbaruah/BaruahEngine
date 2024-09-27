@@ -86,6 +86,7 @@ project "Sandbox"
     includedirs
     {
         "BaruahEngine",
+        "%{IncludeDir.glm}",
         "%{IncludeDir.spdlog}",
         "${prj.name}"
     }

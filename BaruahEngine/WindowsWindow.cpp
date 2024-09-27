@@ -6,6 +6,7 @@
 #include <GLFW/glfw3.h>
 
 #include <Event/ApplicationEvent.h>
+
 #include "Camera/PerspectiveCamera.h"
 
 namespace BaruahEngine {
@@ -30,6 +31,13 @@ namespace BaruahEngine {
 
 		m_Window = glfwCreateWindow((int)data.Width, (int)data.Height, data.Title.c_str(), nullptr, nullptr);
 
+		m_Camera = std::make_shared<PerspectiveCamera>(
+			glm::vec3(0.0f, 0.0f, 3.0f), // Position
+			glm::vec3(0.0f, 1.0f, 0.0f), // Up vector
+			-90.0f, 0.0f,                // Yaw and Pitch
+			45.0f, 800.0f / 600.0f,      // FOV and Aspect Ratio
+			0.1f, 100.0f);               // Near and Far Plane
+		
 		glfwMakeContextCurrent(m_Window);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		BE_CORE_ASSERT(status, "Failed to Initialize Glad");
@@ -39,12 +47,6 @@ namespace BaruahEngine {
 		SetWindowCloseCallback();
 
 		m_entity = std::make_shared<Entity>();
-
-		m_camera = std::make_shared<PerspectiveCamera>(glm::vec3(0.0f, 0.0f, 3.0f), // Position
-			glm::vec3(0.0f, 1.0f, 0.0f), // Up vector
-			-90.0f, 0.0f,                // Yaw and Pitch
-			45.0f, 800.0f / 600.0f,      // FOV and Aspect Ratio
-			0.1f, 100.0f);               // Near and Far Plane
 	}
 
 	WindowsWindow::~WindowsWindow()
@@ -55,9 +57,6 @@ namespace BaruahEngine {
 	void WindowsWindow::OnUpdate()
 	{
 		m_entity->update();
-
-		glm::mat4 projectionMatrix = m_camera->getProjectionMatrix();
-		glm::mat4 viewMatrix = m_camera->getViewMatrix();
 
 		m_entity->render();
 
