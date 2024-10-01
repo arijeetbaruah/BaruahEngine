@@ -1,10 +1,11 @@
 ﻿#pragma once
 
 #include "./BaseCamera.h"
+#include "Core.h"
 
 namespace BaruahEngine
 {
-    class PerspectiveCamera : public BaseCamera
+    class BARUAH_API PerspectiveCamera : public BaseCamera
     {
     public:
         float fov;

@@ -20,6 +20,7 @@ namespace BaruahEngine {
 	WindowsWindow::WindowsWindow(WindowData data) : Window(data)
 	{
 		BE_CORE_INFO("Creating window {0} ({1}, {2})", data.Title, data.Width, data.Height);
+		m_AssetManager = std::make_shared<AssetManager>();
 
 		if (!s_GLFWInitialized)
 		{

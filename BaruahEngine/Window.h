@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 #include "Event.h"
+#include "Assets/AssetManager.h"
 #include "Camera/BaseCamera.h"
 
 namespace BaruahEngine {
@@ -31,11 +32,13 @@ namespace BaruahEngine {
 
 		static Window* Create(const WindowData& datum = WindowData());
 
-		std::shared_ptr<BaseCamera> GetCamera() { return m_Camera; }
+		std::shared_ptr<BaseCamera> GetCamera() const { return m_Camera; }
+		std::shared_ptr<AssetManager> GetAssetManager() const { return m_AssetManager; }
 
 	protected:
 		WindowData m_Data;
 
 		std::shared_ptr<BaseCamera> m_Camera;
+		std::shared_ptr<AssetManager> m_AssetManager;
 	};
 }

@@ -1,10 +1,11 @@
 ﻿#pragma once
 
 #include "./BaseCamera.h"
+#include "Core.h"
 
 namespace BaruahEngine
 {
-    class OrthographicCamera : public BaseCamera
+    class BARUAH_API OrthographicCamera : public BaseCamera
     {
     public:
         float left;

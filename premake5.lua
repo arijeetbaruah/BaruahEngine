@@ -10,6 +10,7 @@ IncludeDir["spdlog"] = "vendor/spdlog/include"
 IncludeDir["glm"] = "vendor/glm"
 IncludeDir["GLFW"] = "vendor/glfw/include"
 IncludeDir["Glad"] = "vendor/Glad/include"
+IncludeDir["AssImp"] = "vendor/assimp/include"
 
 include "vendor/glfw"
 include "vendor/Glad"
@@ -44,7 +45,8 @@ project "BaruahEngine"
         "%{IncludeDir.glm}",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.spdlog}"
+        "%{IncludeDir.spdlog}",
+        "%{IncludeDir.AssImp}"
     }
 
     filter "system:windows"

@@ -8,11 +8,16 @@ namespace BaruahEngine {
     {
     public:
         Entity();
+        ~Entity();
 
         void render();
         void update();
 
     protected:
-        GLuint VAO, VBO, EBO;
+        GLuint VBO;
+        
+        GLuint shaderProgram;
+        GLuint vertexShader;
+        GLuint fragmentShader;
     };
 }
